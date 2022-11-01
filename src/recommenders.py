@@ -141,9 +141,11 @@ class MainRecommender:
                                         N=N,
                                         filter_already_liked_items=False,
                                         filter_items=[self.itemid_to_id[999999]],
-                                        recalculate_user=True)
+                                        #recalculate_user=True
+                                        )
         
-        res = [self.id_to_itemid[rec[0]] for rec in recs]
+        #res = [self.id_to_itemid[rec[0]] for rec in recs]
+        res = [self.id_to_itemid[rec] for rec in recs[0]]
 
         res = self._extend_with_top_popular(res, N=N)
 
