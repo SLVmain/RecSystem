@@ -144,7 +144,6 @@ class MainRecommender:
                                         #recalculate_user=True
                                         )
         
-        #res = [self.id_to_itemid[rec[0]] for rec in recs]
         res = [self.id_to_itemid[rec] for rec in recs[0]]
 
         res = self._extend_with_top_popular(res, N=N)
@@ -191,7 +190,6 @@ class MainRecommender:
         similar_users = [rec[0] for rec in similar_users]
         similar_users = similar_users[1:]   # удалим юзера из запроса
 
-        #!!! Здесь была ошибка!
         for user in similar_users:
             userid = self.id_to_userid[user] #own recommender works with user_ids
             res.extend(self.get_own_recommendations(userid, N=1))
