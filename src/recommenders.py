@@ -38,12 +38,7 @@ class MainRecommender:
             self.itemid_to_id, self.userid_to_id = self._prepare_dicts(self.user_item_matrix)
 
         if weighting:
-            #self.user_item_matrix = bm25_weight(self.user_item_matrix.T).T
-            
-            if weighting_type == 'bm25':
-                self.user_item_matrix = bm25_weight(self.user_item_matrix.T).T 
-            elif weighting_type == 'tfidf':
-                self.user_item_matrix = tfidf_weight(self.user_item_matrix.T).T 
+            self.user_item_matrix = bm25_weight(self.user_item_matrix.T).T
 
         self.model = self.fit(self.user_item_matrix)
         self.own_recommender = self.fit_own_recommender(self.user_item_matrix)
@@ -54,8 +49,8 @@ class MainRecommender:
         """Готовит user-item матрицу"""
         user_item_matrix = pd.pivot_table(data,
                                           index='user_id', columns='item_id',
-                                          values='quantity',  # Можно пробовать другие варианты
-                                          aggfunc='count',
+                                          values='quantity',  
+                                          aggfunc='mean', # Можно пробовать другие варианты 'count'
                                           fill_value=0
                                           )
 
@@ -194,6 +189,7 @@ class MainRecommender:
         similar_users = [rec[0] for rec in similar_users]
         similar_users = similar_users[1:]   # удалим юзера из запроса
 
+        #!!! Здесь была ошибка!
         for user in similar_users:
             userid = self.id_to_userid[user] #own recommender works with user_ids
             res.extend(self.get_own_recommendations(userid, N=1))
@@ -202,3 +198,4 @@ class MainRecommender:
 
         assert len(res) == N, 'Количество рекомендаций != {}'.format(N)
         return res
+

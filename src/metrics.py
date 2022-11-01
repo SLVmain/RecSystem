@@ -29,6 +29,7 @@ def precision_at_k(recommended_list, bought_list, k=5):
     return precision
 
 
+
 def recall(recommended_list, bought_list):
     bought_list = np.array(bought_list)
     recommended_list = np.array(recommended_list)
@@ -52,3 +53,4 @@ def recall_at_k(recommended_list, bought_list, k=5):
     recall = flags.sum() / len(bought_list)
 
     return recall
+
