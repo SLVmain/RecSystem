@@ -17,7 +17,7 @@
 3. **retail_train.csv** - таблица взаимодействия покупателя с товарами. Файл содержит информацию о id покупателя, id корзины покупателя, id товара, количество товара,
 проданный объем, id магазина, информация о скидках, время покупкиб использованный скидочный купон
 
-Для более ясного понимания кода вспомогательные модули были вынесены в отдельный модуль [src](https://github.com/SLVmain/RecSystem/tree/main/src). Решение задачи представленно в [ноутбуке](___.ipynb)
+Для более ясного понимания кода вспомогательные модули были вынесены в отдельный модуль [src](https://github.com/SLVmain/RecSystem/tree/main/src). Решение задачи представленно в [ноутбуке](https://github.com/SLVmain/RecSystem/blob/main/rec_sys_lgbm.ipynb).
 Модуль [src](https://github.com/SLVmain/RecSystem/tree/main/src) содержит следующие файлы: metrics.py, recommenders.py, utils.py
 
 **metrics.py** - содержит скрипты для рассчета следующих метрик: *precision*, *precision@K*, *recall*, *recall@K*
